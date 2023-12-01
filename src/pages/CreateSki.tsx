@@ -24,12 +24,12 @@ type SkiType = {
 };
 
 type SkiProps = {
-  currentUser: UserType|null
+  // currentUser: UserType|null
 };
 
 
 
-const CreateSki: React.FC<SkiProps<currentUser>> = () => {
+const CreateSki: React.FC<SkiProps> = () => {
   const [skis, setSkis] = useState<SkiType[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -66,23 +66,21 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
 
       const token = localStorage.getItem('token')
       console.log('HERE IS THE TOKEN', token)
-      const userResponse = await fetch('http://127.0.0.1:5000/api/users/me', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
+      // const userResponse = await fetch('http://127.0.0.1:5000/api/users/me', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Authorization': `Bearer ${token}`,
+      //   },
 
-      });
-      console.log(userResponse, 'USER RESPONSE')
-      if (userResponse.ok) {
-        const responseBody = await userResponse.json();
-        const userData = responseBody.data.id
-        console.log(userData)
-      }
-      // const imgURL = skiFormData.imageUrl?.toString().trim()
- 
-
-
+      // });
+      // console.log(userResponse, 'USER RESPONSE')
+      // if (userResponse.ok) {
+      //   const responseBody = await userResponse.json();
+      //   const userData = responseBody.data.id
+      //   console.log(userData)
+      // }
+      const imgURL = skiFormData.imageUrl?.toString().trim()
+      console.log('IMAGE PATH',imgURL)
 
       console.log(skiFormData.userId)
       console.log('checking', token)
