@@ -10,6 +10,8 @@ import Container from 'react-bootstrap/Container';
 
 
 export default function LoginPage() {
+  const navigate = useNavigate()
+
   const [formErrors, setFormErrors] = useState({});
   // const [user, setUser] = setState()
   const usernameField = useRef<HTMLInputElement>(null);
@@ -91,6 +93,7 @@ export default function LoginPage() {
             // console.log(userData)
             console.log('Login successful!!! YAY', responseBody);
             console.log(responseBody.id) //WORKS
+            navigate('/')
             // console.log('here is userData', userData) //undefined
           } else {
             const responseBodyText = await response.text();

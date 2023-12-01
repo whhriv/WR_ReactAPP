@@ -3,11 +3,13 @@ import  Card  from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { useState, useEffect } from 'react';
-import Navigation from '../components/Navigation';
+
 import Sidebar from '../components/SideBar1';
 import Body from '../components/Body';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button'
+import { useNavigate } from 'react-router';
+import { deleteSurfById } from '../lib/EditApiHelper';
 
 
 type SurfType = {
@@ -26,7 +28,7 @@ type SurfProps = {}
 export default function Surf({}:SurfProps) {
   const [surf, setSurf] = useState<SurfType[]>([]);
   const [error, setError] = useState<string | null>(null);
-
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,6 +53,12 @@ export default function Surf({}:SurfProps) {
 
     fetchData();
   }, []);
+
+  const handleEditClick = (surfId: number) => {
+    return navigate(`/surf/edit/${surfId}`)
+  }
+  const token = localStorage.getItem('token')
+  const tokenString = JSON.stringify(token)
   return (
     <>
     <Body sidebar>
@@ -72,8 +80,8 @@ export default function Surf({}:SurfProps) {
                 <Card.Text>Length: {surf.length}</Card.Text>
                 <Card.Text>userID: {surf.userId}</Card.Text>
                 <Card.Text>Description: <p>{surf.description}</p></Card.Text>
-                <Button variant="outline-danger" onClick={() => handleEditClick(ski.id)}>Edit</Button>
-                <Button variant="outline-danger" onClick={() => handleDeleteSki(ski.id)}>Delete Ski</Button>
+                <Button variant="outline-danger" onClick={() => handleEditClick(surf.id)}>Edit</Button>
+                <Button variant="outline-danger" onClick={() => deleteSurfById(tokenString, surf.id)}>Delete Ski</Button>
             </Card.Body></Col>
             <Col md="4">
         {/* Assuming surf.imageUrl is the URL of the image */}

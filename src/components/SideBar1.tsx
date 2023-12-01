@@ -44,6 +44,9 @@ const Sidebar = () => {
             <NavLink exact to="/createsurf" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="cart-plus">Add Surfboard</CDBSidebarMenuItem>
             </NavLink>
+            <NavLink exact to="/surf/edit/:surfId" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="cart-plus">Edit Surfboard</CDBSidebarMenuItem>
+            </NavLink>
             <NavLink exact to="/Chat" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="table">Chat</CDBSidebarMenuItem>
             </NavLink>            

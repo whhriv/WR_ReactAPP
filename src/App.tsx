@@ -20,9 +20,24 @@ import EditSki from './pages/EditSki';
 import DeleteSki from './pages/DeleteSki';
 import { getMe } from './lib/APIWrapper';
 import  Chat  from './components/Chat'
-
+import EditSurf from './pages/SurfEditAttempt'
 
 export default function App() {
+
+  const [isLoggedIn, setIsLoggedIn] = useState((localStorage.getItem('token') && new Date(localStorage.getItem('tokenExp') as string) > new Date()) || false);
+  const [loggedInUser, setLoggedInUser] = useState<UserType|null>(null);
+
+  useEffect(() => {
+      if (isLoggedIn){
+          getMe(localStorage.getItem('token') as string)
+              .then(response => {
+                  if (response.data){
+                      setLoggedInUser(response.data)
+                  }
+              })
+              .catch(err => console.error(err))
+      }
+  }, [isLoggedIn])
 //   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('token'))
 //   const [loggedInUser, setLoggedInUser] = useState<UserType|null>(null);
 
@@ -93,6 +108,7 @@ return (
           <Route path="/Deleteski" element={<DeleteSki />} />
           <Route path="/surf" element={<Surf />} />
           <Route path="/createsurf" element={<CreateSurf />} />
+          <Route path='/surf/edit/:surfId' element={<EditSurf currentUser={loggedInUser} />} /> 
           <Route path="/register" element={<Register />} />
           
           <Route path="*" element={<Navigate to="/" />} />
@@ -102,5 +118,5 @@ return (
     </Container>
   );
 }
-
+  // <Route path='/post/:postId' element={<EditSurf flashMessage={flashMessage} currentUser={loggedInUser} />} /> 
 {/* <Route path="/chat" element={<Chat />} /> */}

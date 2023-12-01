@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import UserType from '../types/auth';
 import ImageUpload from '../components/ImageUpload';
 import Container from 'react-bootstrap/Container';
+import { useNavigate } from 'react-router';
 
 
 
@@ -48,7 +49,7 @@ const CreateSki: React.FC<SkiProps> = () => {
 
 const userData = localStorage.getItem('user')
 console.log('USER DATA SHOULD BE HERE',userData)
-
+const navigate = useNavigate()
 // let imgURL =  skiFormData.imageUrl?.toString()
 
 
@@ -96,6 +97,7 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
       if (response.ok) {
         // If successful, refresh the list of skis
         console.log('ski created from here in createSki fetch')
+        navigate('/')
         // createSki()
       } else {
         setError('Failed to create a new ski');
