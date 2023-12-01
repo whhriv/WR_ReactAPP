@@ -14,7 +14,7 @@ type SurfType = {
   make: string;
   model: string;
   length: string;
-  binding: string;
+  imageUrl: string;
   dateCreated: string;
   userId: number;
   image_url: string;
@@ -26,6 +26,7 @@ const CreateSurf: React.FC<SurfProps> = () => {
   const [surf, setSurf] = useState<SurfType[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<UserType[]>([])
   const [surfFormData, setSurfFormData] = useState<Partial<SurfType>>(
     {
         title: '',
@@ -33,9 +34,12 @@ const CreateSurf: React.FC<SurfProps> = () => {
         make: '',
         model: '',
         length: '',
-        binding: '',
+        imageUrl: ''
     }
 )
+const userData = localStorage.getItem('user')
+console.log('USER DATA SHOULD BE HERE',userData)
+
 
 const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setSurfFormData({...surfFormData, [e.target.name]: e.target.value})
@@ -66,13 +70,26 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
   // }, []);
 
   const CreateSurf = async () => {
-    const imageURL = JSON.stringify(surfFormData.image_url)
-    console.log(imageURL)
+    const userData = localStorage.getItem('user')
+    console.log('UserData inside createSurf',userData)
+    
     try {
+      const userData = localStorage.getItem('user')
+      console.log('inside TRY',userData)
+
+      const token = localStorage.getItem('token')
+      console.log('HERE IS THE TOKEN', token)
+            const imgURL = surfFormData.imageUrl?.toString().trim()
+      console.log('IMAGE PATH',imgURL)
+
+      console.log(surfFormData.userId)
+      console.log('checking', token)
+      
       const response = await fetch('http://127.0.0.1:5000/api/createsurf', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
           title: surfFormData.title,
@@ -80,8 +97,8 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
           make: surfFormData.make,
           model: surfFormData.model,
           length: surfFormData.length,
-          binding: surfFormData.binding,
-          imageUrl: surfFormData.image_url
+          image_url: imgURL,
+          user_id: userData
           
         }),
       });
