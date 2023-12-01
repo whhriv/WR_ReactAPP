@@ -6,7 +6,7 @@ import  Card  from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import { useState, useEffect } from 'react';
-import Navigation from '../components/Navigation';
+// import Navigation from '../components/Navigation';
 import Sidebar from '../components/SideBar1';
 import Body from '../components/Body';
 import 'bootstrap/dist/css/bootstrap.min.css';  
@@ -83,6 +83,25 @@ export default function Skis({}:SkiProps) {
 
   //   handleDeleteSki();
   // }, []);
+
+//   const handleDeleteSki = async (skiId:number|string) => {
+//       const token = localStorage.getItem('token') 
+   
+//       // const token = localStorage.getItem('token') 
+//       const response = await fetch(`http://127.0.0.1:5000/api/deleteskis/${skiId}`), {
+//       method: 'PUT',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Authorization': `Bearer ${token}`
+//       },
+    
+//     if (response.error){
+//         console.log(response.error, 'danger')
+//     } else {
+//         console.log(response.data!, 'primary');
+//         navigate('/')
+//     }
+// }
   
   const handleEditClick = (skiId: number) => {
     return <Navigate to={`/editski/${skiId}`} />; 
@@ -105,7 +124,7 @@ export default function Skis({}:SkiProps) {
                 <Card.Text>Length: {ski.length}</Card.Text>
                 <Card.Text>Bindings: {ski.binding}</Card.Text>
                 <Button variant="primary">Reserve!</Button>
-                <Button variant="outline-danger" onClick={() => handleEditClick(ski.id)}>Edit</Button>
+                <Button variant="outline-secondary" onClick={() => handleEditClick(ski.id)}>Edit</Button>
                 <Button variant="outline-danger" onClick={() => handleDeleteSki(ski.id)}>Delete Ski</Button>
 
               </Card.Body>

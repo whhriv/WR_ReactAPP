@@ -8,7 +8,7 @@ import { getSurfById, editSurfById, deleteSurfById } from '../lib/EditApiHelper'
 import CategoryType from '../types/category';
 import SurfType from '../types/surf';
 import UserType from '../types/auth';
-import axios from 'axios'
+// import axios from 'axios'
 
 type EditSurfProps = {
     // console.log: (message:string, category: CategoryType) => void,
@@ -38,23 +38,6 @@ export default function EditSurf({  currentUser }: EditSurfProps) {
         getSurf();
     }, [ navigate, surfId])
 
-    /////////////////////////
-    // async function getPostById(postId:string): Promise<APIResponse<PostType>> {
-    //     let error;
-    //     let data;
-    //     try{
-    //         const response = await apiClientNoAuth().get(postEndpoint + '/' + postId);
-    //         data = response.data;
-    //     } catch(err){
-    //         if (axios.isAxiosError(err)){
-    //             error = err.response?.data.error
-    //         } else {
-    //             error = 'Something went wrong';
-    //         }
-    //     }
-    //     return {error, data}
-    // }
-    ////////////////////////////
 
     useEffect(() => {
         if (SurfToEdit){
@@ -81,23 +64,7 @@ export default function EditSurf({  currentUser }: EditSurfProps) {
             navigate('/')
         }
     }
-////////////////////////////
-    // async function editSurfById(token:string, surfId:string|number, editedSurfData:SurfType): Promise<APIResponse<SurfType>>{
-    //     let error;
-    //     let data;
-    //     try {
-    //         const response = await apiClientTokenAuth(token).put(SurfEndpoint + '/' + surfId, editedSurfData);
-    //         data = response.data
-    //     } catch(err){
-    //         if (axios.isAxiosError(err)){
-    //             error = err.response?.data.error
-    //         } else {
-    //             error = 'Something went wrong';
-    //         }
-    //     }
-    //     return {error, data}
-    // }
-//////////////////////////////
+
     const handleDeleteSurf = async () => {
         const token = localStorage.getItem('token') || ''
         const response = await deleteSurfById(token, surfId!);  //deleteSurfById
@@ -109,22 +76,6 @@ export default function EditSurf({  currentUser }: EditSurfProps) {
         }
     }
 
-    /////////////////////////
-    // async function deleteSurfById(token:string, SurfId:string|number): Promise<APIResponse<string>>{
-    //     let error;
-    //     let data;
-    //     try {
-    //         const response = await apiClientTokenAuth(token).delete(SurfEndpoint + '/' + SurfId);
-    //         data = response.data.success
-    //     } catch(err){
-    //         if (axios.isAxiosError(err)){
-    //             error = err.response?.data.error
-    //         } else {
-    //             error = 'Something went wrong';
-    //         }
-    //     }
-    //     return {error, data}
-        ///////////////////////////
     
     return (
         <>
