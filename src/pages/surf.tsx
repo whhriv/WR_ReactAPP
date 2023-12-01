@@ -55,7 +55,7 @@ export default function Surf({}:SurfProps) {
   }, []);
 
   const handleEditClick = (surfId: number) => {
-    return navigate(`/surf/edit/${surfId}`)
+    return navigate(`/edit/${surfId}`)
   }
   const token = localStorage.getItem('token')
   const tokenString = JSON.stringify(token)
