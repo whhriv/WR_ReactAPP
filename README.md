@@ -1,5 +1,23 @@
 # React + TypeScript + Vite
 
+
+download, install and run:
+
+  git clone https://github.com/whhriv/WR_ReactAPP
+  npm install
+  npm run dev
+
+##Dependent FLASK src backend found at:
+```
+https://github.com/whhriv/ShredShareFlask
+
+--OR--
+
+https://shredshare-api.onrender.com
+
+
+```
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

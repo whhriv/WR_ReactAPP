@@ -40,6 +40,11 @@ const CreateSurf: React.FC<SurfProps> = () => {
 const userData = localStorage.getItem('user')
 console.log('USER DATA SHOULD BE HERE',userData)
 
+let imageUrlRaw = localStorage.getItem('imageString')
+console.log(imageUrlRaw)
+let image_url = JSON.stringify(imageUrlRaw)
+console.log(image_url)
+
 
 const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setSurfFormData({...surfFormData, [e.target.name]: e.target.value})

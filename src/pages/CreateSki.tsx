@@ -46,7 +46,8 @@ const CreateSki: React.FC<SkiProps> = () => {
         imageUrl: ''
     }
 )
-
+// let imageUrl = localStorage.getItem('imageString')
+// console.log(imageUrl)
 const userData = localStorage.getItem('user')
 console.log('USER DATA SHOULD BE HERE',userData)
 const navigate = useNavigate()
@@ -68,8 +69,9 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
       const token = localStorage.getItem('token')
       console.log('HERE IS THE TOKEN', token)
 
-      const imgURL = skiFormData.imageUrl?.toString().trim()
-      console.log('IMAGE PATH',imgURL)
+      // const imgURL = skiFormData.imageUrl?.toString().trim()
+      // console.log('IMAGE PATH',imgURL)
+      // console.log('image path', skiFormData.imageUrl)
 
       console.log(skiFormData.userId)
       console.log('checking', token)
@@ -87,7 +89,7 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
           model: skiFormData.model,
           length: skiFormData.length,
           binding: skiFormData.binding,
-          image_url: imgURL,
+          image_url: skiFormData.imageUrl,
           user_id: userData,
         
         }),

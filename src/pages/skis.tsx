@@ -12,6 +12,7 @@ import Body from '../components/Body';
 import 'bootstrap/dist/css/bootstrap.min.css';  
 import EditSki from './EditSki';
 import DeleteSki from './DeleteSki';
+import { useNavigate } from 'react-router-dom';
 
 
 type SkiType = {
@@ -32,7 +33,7 @@ export default function Skis({}:SkiProps) {
   const [skis, setSkis] = useState<SkiType[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [user, setUser] = useState()
-
+  const navigate = useNavigate()
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -104,7 +105,7 @@ export default function Skis({}:SkiProps) {
 // }
   
   const handleEditClick = (skiId: number) => {
-    return <Navigate to={`/editski/${skiId}`} />; 
+    return navigate(`/editskis/${skiId}`); 
   }
 
   return (

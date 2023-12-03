@@ -25,6 +25,7 @@ const [isLoading, setIsLoading] = useState(false)
       .then(res => {
         setImageUrl(res.data.data.display_url)
         console.log(res.data.data.display_url)
+        // localStorage.setItem('imageString', res.data.data.display_url)
         setIsLoading(false)
 
       })

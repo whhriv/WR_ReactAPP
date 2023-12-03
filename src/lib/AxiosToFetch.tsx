@@ -1,4 +1,4 @@
-const base: string = 'https://kekambas-132-api.onrender.com/api';
+const base: string = '127.0.0.1:5000';
 
 const apiClientNoAuth = () => {
   return {

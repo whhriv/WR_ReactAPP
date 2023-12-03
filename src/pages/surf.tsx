@@ -57,6 +57,7 @@ export default function Surf({}:SurfProps) {
   const handleEditClick = (surfId: number) => {
     return navigate(`/edit/${surfId}`)
   }
+
   const token = localStorage.getItem('token')
   const tokenString = JSON.stringify(token)
   return (
@@ -80,7 +81,8 @@ export default function Surf({}:SurfProps) {
                 <Card.Text>Length: {surf.length}</Card.Text>
                 <Card.Text>userID: {surf.userId}</Card.Text>
                 <Card.Text>Description: <p>{surf.description}</p></Card.Text>
-                <Button variant="outline-danger" onClick={() => handleEditClick(surf.id)}>Edit</Button>
+                <Button variant="primary">Reserve!</Button>
+                <Button className="m-2" variant="outline-success" onClick={() => handleEditClick(surf.id)}>Edit</Button>
                 <Button variant="outline-danger" onClick={() => deleteSurfById(tokenString, surf.id)}>Delete Ski</Button>
             </Card.Body></Col>
             <Col md="4">
