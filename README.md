@@ -15,7 +15,7 @@ https://github.com/whhriv/ShredShareFlask
 
 https://shredshare-api.onrender.com
 
-
+NOTE: currently the Application is set to run on local venv/flask server. 
 ```
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
